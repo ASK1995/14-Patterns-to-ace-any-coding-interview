@@ -1,0 +1,31 @@
+from collections import defaultdict
+
+def smallest_Subarray_given_sum(l, total):
+    d = defaultdict(lambda : -1)
+    smallest = 999999999
+    start_index = -1
+    end_index = -1
+    current_sum = 0
+    
+    for index,value in enumerate(l):
+        current_sum += value
+        
+        if(current_sum == total):
+            smallest = min(smallest, index + 1)
+            start_index = 0 
+            end_index = index
+            
+        if(d[total - current_sum] != -1):
+            smallest = min(smallest, index - d[total - current_sum] + 1)
+            start_index = d[total - current_sum] 
+            end_index = index
+            
+        d[current_sum] = index
+         
+    return smallest,start_index, end_index
+
+l = [10, 2, -2, -20, 10]  
+total = -10
+
+x, start_index, end_index = smallest_Subarray_given_sum(l, total)
+print(x)
