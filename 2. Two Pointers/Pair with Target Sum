@@ -1,0 +1,18 @@
+def pair_sum(l, total):
+    l.sort()
+    p1 = 0
+    p2 = len(l) - 1
+    while(p1 < p2):
+        if(l[p1] + l[p2] == total):
+            print(str(l[p1]), str(l[p2]) + " sum upto total " + str(total))
+            p1 += 1
+            p2 -= 1
+        elif(l[p1] + l[p2] > total):
+            p2 -= 1
+        else:
+            p1 += 1
+        
+
+l = [1, 4, 45, 6, 10, -8] 
+total = 16
+pair_sum(l, total)
