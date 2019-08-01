@@ -1,0 +1,22 @@
+def remove_duplicates(l):
+    p1 = 0
+    p2 = 0
+    prev = None
+    while(p1 < len(l) and p2 < len(l)):
+        if(prev == None):
+            prev = l[p2]
+        else:
+            if(prev == l[p2]):
+                p2 += 1
+                continue
+            else:
+                l[p1] = l[p2]
+                prev = l[p2]
+        p2 += 1
+        p1 += 1
+        
+    return l[:p1] 
+    
+l = [0,0,1,1,1,2,2,3,3,4]
+l = remove_duplicates(l)
+print(l)
