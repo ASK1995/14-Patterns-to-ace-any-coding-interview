@@ -1,0 +1,42 @@
+def square_sorted_array(l):
+    p2 = -1
+    firstpositive = True
+    
+    for i in range(len(l)):
+        if(l[i] > 0 and firstpositive):
+            p2 = i
+            firstpositive = False
+            
+        l[i] = l[i]**2
+     
+    if(p2 == -1):
+        return l
+    
+    p1 = p2 - 1
+    temp = [0]*len(l)
+    k = 0
+    
+    while(p1 >= 0 and p2 < len(l)):
+        if(l[p1] <= l[p2]):
+            temp[k] = l[p1]
+            p1 -= 1
+        else:
+            temp[k] = l[p2]
+            p2 += 1
+        k += 1
+    
+    while(p1 >= 0):
+        temp[k] = l[p1]
+        p1 -= 1
+        k += 1
+    
+    while(p2 < len(l)):
+        temp[k] = l[p2]
+        p2 += 1
+        k += 1
+    
+    l[:] = temp
+    
+l = [ -6 , -3 , -1 , 2 , 4 , 5]
+square_sorted_array(l)
+print(l)
